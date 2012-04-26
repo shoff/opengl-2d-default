@@ -18,9 +18,9 @@
 #define INIT_WINDOW_WIDTH  800
 #define INIT_WINDOW_HEIGHT 600
 
-// Initial screen position
-#define WINDOW_POS_X 0
-#define WINDOW_POS_Y 0
+// Initial window position
+#define INIT_WINDOW_POS_X 0
+#define INIT_WINDOW_POS_Y 0
 
 /*=================================================================================================
   GLOBALS
@@ -61,10 +61,10 @@ void DisplayFunc( void ) {
 
 }
 
-// Function called when there is nothing to do
+// Called when there is nothing to do
 void IdleFunc( void ) {
 
-	// Uncomment to repeatedly update the window
+	// Uncomment the following to repeatedly update the window
 	//glutPostRedisplay();
 
 }
@@ -81,7 +81,7 @@ void ReshapeFunc( int width, int height ) {
 
 }
 
-// Function called when a (ASCII) keyboard key is pressed
+// Called when a (ASCII) keyboard key is pressed
 void KeyboardFunc( unsigned char key, int x, int y ) {  
 
 	switch( key ) {
@@ -101,7 +101,7 @@ void KeyboardFunc( unsigned char key, int x, int y ) {
 
 }
 
-// Function called when a (ASCII) keyboard key is released
+// Called when a (ASCII) keyboard key is released
 void KeyboardUpFunc( unsigned char key, int x, int y ) {  
 
 	// Set the state of the current key to released
@@ -109,7 +109,7 @@ void KeyboardUpFunc( unsigned char key, int x, int y ) {
 
 }
 
-// Function called when a special keyboard key is pressed
+// Called when a special keyboard key is pressed
 void KeyboardSpecialFunc( int key, int x, int y ) {
 
 	// Set the state of the current key to pressed
@@ -117,7 +117,7 @@ void KeyboardSpecialFunc( int key, int x, int y ) {
 
 }
 
-// Function called when a special keyboard key is released
+// Called when a special keyboard key is released
 void KeyboardSpecialUpFunc( int key, int x, int y ) {
 
 	// Set the state of the current key to released
@@ -125,7 +125,7 @@ void KeyboardSpecialUpFunc( int key, int x, int y ) {
 
 }
 
-// Function called when a mouse button is pressed or released
+// Called when a mouse button is pressed or released
 void MouseFunc( int button, int state, int x, int y ) {
 
 	// Key 0: left button
@@ -147,7 +147,7 @@ void MouseFunc( int button, int state, int x, int y ) {
 
 }
 
-// Function called when the mouse cursor is moved while a mouse button is pressed
+// Called when the mouse cursor is moved while a mouse button is pressed
 void MotionFunc( int x, int y ) {
 
 	// Update mouse cursor position
@@ -156,7 +156,7 @@ void MotionFunc( int x, int y ) {
 
 }
 
-// Function called when the mouse cursor is moved while no mouse buttons are pressed
+// Called when the mouse cursor is moved while no mouse buttons are pressed
 void PassiveMotionFunc( int x, int y ) {
 
 	// Update mouse cursor position
@@ -183,7 +183,7 @@ int main( int argc, char** argv ) {
 	glutInit( &argc, argv );
 	glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH );
 	glutInitWindowSize( INIT_WINDOW_WIDTH, INIT_WINDOW_HEIGHT );
-	glutInitWindowPosition( WINDOW_POS_X, WINDOW_POS_Y );
+	glutInitWindowPosition( INIT_WINDOW_POS_X, INIT_WINDOW_POS_Y );
 
 	// Create main OpenGL window
 	glutCreateWindow( "OpenGL 2D" );
