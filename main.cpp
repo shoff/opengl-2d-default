@@ -168,7 +168,7 @@ void PassiveMotionFunc( int x, int y ) {
 // Initializes variables and OpenGL settings
 void Initialize( void ) {
 
-	// Set the background to white
+	// Set the background color to white
 	glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
 	// Set up orthogonal projection with (0,0) at the top-left corner of the window
@@ -177,7 +177,7 @@ void Initialize( void ) {
 }
 
 // Where it all begins...
-int main( int argc, char **argv ) {
+int main( int argc, char** argv ) {
 
 	// Initialize GLUT and window properties
 	glutInit( &argc, argv );
