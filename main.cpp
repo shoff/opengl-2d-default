@@ -1,7 +1,8 @@
 /*=================================================================================================
-      Author: Renato Farias (renatomdf@gmail.com)
- Creation on: April 20th, 2012
-     Purpose: To be a simple, bare-bones starting point for 2D OpenGL applications using GLUT.
+     Author: Renato Farias (renatomdf@gmail.com)
+ Created on: April 20th, 2012
+ Updated on: May 23rd, 2012
+    Purpose: To be a simple, bare-bones starting point for 2D OpenGL applications using GLUT.
 =================================================================================================*/
 
 /*=================================================================================================
@@ -41,6 +42,14 @@ bool MouseKeyStates[8];
 
 // Is the window currently fullscreen?
 bool FullScreen = false;
+
+// Pop-up menus
+int MenuId, SubMenuId;
+enum MenuEntries {
+	ENTRY_QUIT = 0,
+	ENTRY_FULLSCREEN_ENTER,
+	ENTRY_FULLSCREEN_LEAVE
+};
 
 /*=================================================================================================
   FUNCTIONS
@@ -165,6 +174,30 @@ void PassiveMotionFunc( int x, int y ) {
 
 }
 
+// Called when an item from a pop-up menu is selected
+void MenuFunc( int value ) {
+
+	switch( value ) {
+		case ENTRY_QUIT:
+			exit(0);
+
+		case ENTRY_FULLSCREEN_ENTER:
+			if( !FullScreen ) {
+				glutFullScreen();
+				FullScreen = true;
+			}
+			break;
+
+		case ENTRY_FULLSCREEN_LEAVE:
+			if( FullScreen ) {
+				glutPositionWindow(0,0);
+				FullScreen = false;
+			}
+			break;
+	}
+
+}
+
 // Initializes variables and OpenGL settings
 void Initialize( void ) {
 
@@ -173,6 +206,19 @@ void Initialize( void ) {
 
 	// Set up orthogonal projection with (0,0) at the top-left corner of the window
 	glOrtho( 0, 1, 1, 0, -1 ,1 );
+
+	// Create sub pop-up menu and add entries
+	SubMenuId = glutCreateMenu( &MenuFunc );
+	glutAddMenuEntry( "Enter FullScreen", ENTRY_FULLSCREEN_ENTER );
+	glutAddMenuEntry( "Leave FullScreen", ENTRY_FULLSCREEN_LEAVE );
+
+	// Create main pop-up menu and add entries
+	MenuId = glutCreateMenu( &MenuFunc );
+	glutAddSubMenu( "FullScreen", SubMenuId );
+	glutAddMenuEntry( "Quit", ENTRY_QUIT );
+
+	// Attach menu to right mouse button
+	glutAttachMenu( GLUT_RIGHT_BUTTON );
 
 }
 
